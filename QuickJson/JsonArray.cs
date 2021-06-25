@@ -2,7 +2,7 @@
 
 namespace QuickJson
 {
-    public class JsonArray : JsonNode
+    internal class JsonArray : JsonNode
     {
         public JsonNode[] Children { get; }
 

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace QuickJson
 {
-    public abstract class JsonNode
+    internal abstract class JsonNode
     {
         public virtual bool? TryGetBool() => null;
 

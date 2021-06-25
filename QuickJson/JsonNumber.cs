@@ -1,6 +1,6 @@
 ﻿namespace QuickJson
 {
-    public class JsonNumber : JsonNode
+    internal class JsonNumber : JsonNode
     {
         public double Value { get; }
 

@@ -1,6 +1,6 @@
 ﻿namespace QuickJson
 {
-    public class JsonNull : JsonNode
+    internal class JsonNull : JsonNode
     {
         public static JsonNull Instance { get; } = new();
     }

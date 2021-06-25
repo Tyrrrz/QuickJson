@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace QuickJson
 {
-    public class JsonReader
+    internal class JsonReader
     {
         private readonly string _source;
         private int _index;

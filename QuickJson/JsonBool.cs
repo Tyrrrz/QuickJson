@@ -1,6 +1,6 @@
 ﻿namespace QuickJson
 {
-    public class JsonBool : JsonNode
+    internal class JsonBool : JsonNode
     {
         public static JsonBool True { get; } = new(true);
         public static JsonBool False { get; } = new(false);

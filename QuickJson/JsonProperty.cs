@@ -1,6 +1,6 @@
 ﻿namespace QuickJson
 {
-    public class JsonProperty
+    internal class JsonProperty
     {
         public string Name { get; }
 

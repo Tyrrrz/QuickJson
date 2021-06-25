@@ -2,7 +2,7 @@
 
 namespace QuickJson
 {
-    public class JsonObject : JsonNode
+    internal class JsonObject : JsonNode
     {
         public JsonProperty[] Properties { get; }
 
