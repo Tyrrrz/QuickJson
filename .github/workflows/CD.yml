@@ -19,7 +19,7 @@ jobs:
           dotnet-version: 5.0.x
 
       - name: Pack
-        run: dotnet pack CliWrap --configuration Release
+        run: dotnet pack QuickJson --configuration Release
 
       - name: Deploy
-        run: dotnet nuget push CliWrap/bin/Release/*.nupkg -s nuget.org -k ${{ secrets.NUGET_TOKEN }}
+        run: dotnet nuget push QuickJson/bin/Release/*.nupkg -s nuget.org -k ${{ secrets.NUGET_TOKEN }}
