@@ -113,17 +113,19 @@ namespace QuickJson
                     if (c == 'u')
                     {
                         var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
-                        if (hexSequence is null)
+
+                        if (hexSequence is not null && short.TryParse(
+                            hexSequence,
+                            NumberStyles.AllowHexSpecifier,
+                            CultureInfo.InvariantCulture,
+                            out var codepoint))
                         {
-                            // Backtrack to the beginning to consume the characters raw
-                            _index = indexCheckpoint;
-                            return null;
+                            return (char) codepoint;
                         }
 
-                        return short.TryParse(hexSequence, NumberStyles.AllowHexSpecifier, CultureInfo.InvariantCulture,
-                            out var codepoint)
-                            ? (char) codepoint
-                            : null;
+                        // Backtrack to the beginning to consume the characters raw
+                        _index = indexCheckpoint;
+                        return null;
                     }
 
                     // Basic escape
