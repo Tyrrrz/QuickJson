@@ -12,7 +12,7 @@ namespace QuickJson.Tests
         public MainSpecs(ITestOutputHelper output) => _output = output;
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_null_token()
+        public void User_can_parse_JSON_containing_a_null_node()
         {
             // Act
             var json = Json.Parse("null");
@@ -22,7 +22,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_true_bool_token()
+        public void User_can_parse_JSON_containing_a_true_bool_node()
         {
             // Act
             var json = Json.Parse("true");
@@ -34,7 +34,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_false_bool_token()
+        public void User_can_parse_JSON_containing_a_false_bool_node()
         {
             // Act
             var json = Json.Parse("false");
@@ -46,7 +46,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_an_integer_number_token()
+        public void User_can_parse_JSON_containing_an_integer_number_node()
         {
             // Act
             var json = Json.Parse("1234");
@@ -58,7 +58,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_floating_point_number_token()
+        public void User_can_parse_JSON_containing_a_floating_point_number_node()
         {
             // Act
             var json = Json.Parse("1234.56");
@@ -70,7 +70,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token()
+        public void User_can_parse_JSON_containing_a_string_node()
         {
             // Act
             var json = Json.Parse("\"foo\"");
@@ -82,7 +82,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token_of_zero_length()
+        public void User_can_parse_JSON_containing_a_string_node_of_zero_length()
         {
             // Act
             var json = Json.Parse("\"\"");
@@ -94,19 +94,19 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token_with_escaped_characters()
+        public void User_can_parse_JSON_containing_a_string_node_with_escaped_characters()
         {
             // Act
-            var json = Json.Parse("\"foo \\\\ \\\" \\/ bar\\n\"");
+            var json = Json.Parse("\"\\tfoo \\\\ \\\" \\/ \\b \\f bar\\r\\n\"");
             var value = json.TryGetString();
 
             // Assert
             value.Should().NotBeNull();
-            value?.Should().Be("foo \\ \" / bar\n");
+            value?.Should().Be("\tfoo \\ \" / \b \f bar\r\n");
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token_with_invalid_escaped_characters()
+        public void User_can_parse_JSON_containing_a_string_node_with_invalid_escaped_characters()
         {
             // Act
             var json = Json.Parse("\"foo \\x\"");
@@ -118,7 +118,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token_with_escaped_unicode_literal()
+        public void User_can_parse_JSON_containing_a_string_node_with_an_escaped_unicode_literal()
         {
             // Act
             var json = Json.Parse("\"foo\\u00f8bar\"");
@@ -130,7 +130,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_a_string_token_with_invalid_escaped_unicode_literal()
+        public void User_can_parse_JSON_containing_a_string_node_with_an_invalid_escaped_unicode_literal()
         {
             // Act
             var json = Json.Parse("\"foo \\u123\"");
@@ -142,7 +142,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_an_array_token()
+        public void User_can_parse_JSON_containing_an_array_node()
         {
             // Act
             var json = Json.Parse("[1, \"foo\", true]");
@@ -163,7 +163,7 @@ namespace QuickJson.Tests
         }
 
         [Fact]
-        public void User_can_parse_JSON_containing_an_object_token()
+        public void User_can_parse_JSON_containing_an_object_node()
         {
             // Act
             var json = Json.Parse("{\"foo\": 1, \"bar\": \"zzz\", \"baz\": true}");
@@ -308,6 +308,23 @@ namespace QuickJson.Tests
             // Act & assert
             var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("true_"));
             _output.WriteLine(ex.Message);
+        }
+
+        [Fact]
+        public void User_can_try_to_safely_extract_an_invalid_value_from_a_node_and_it_returns_null()
+        {
+            // Arrange
+            var json = Json.Parse("null");
+
+            // Act
+            var asBool = json.TryGetBool();
+            var asNumber = json.TryGetNumber();
+            var asString = json.TryGetString();
+
+            // Assert
+            asBool.Should().BeNull();
+            asNumber.Should().BeNull();
+            asString.Should().BeNull();
         }
     }
 }

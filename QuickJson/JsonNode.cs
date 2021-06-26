@@ -17,7 +17,8 @@ namespace QuickJson
 
         public virtual IEnumerable<JsonProperty> EnumerateProperties() => Enumerable.Empty<JsonProperty>();
 
-        public JsonNode? TryGetChild(int index) => EnumerateChildren().ElementAtOrDefault(index);
+        public JsonNode? TryGetChild(int arrayIndex) =>
+            EnumerateChildren().ElementAtOrDefault(arrayIndex);
 
         public JsonNode? TryGetChild(string propertyName) => EnumerateProperties()
             .FirstOrDefault(p => string.Equals(p.Name, propertyName, StringComparison.Ordinal))?

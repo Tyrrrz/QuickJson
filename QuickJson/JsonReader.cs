@@ -126,11 +126,11 @@ namespace QuickJson
                             : null;
                     }
 
-                    // Basic escapes
+                    // Basic escape
                     return c switch
                     {
                         'b' => '\b',
-                        'f' => '\u000C',
+                        'f' => '\f',
                         'n' => '\n',
                         'r' => '\r',
                         't' => '\t',
