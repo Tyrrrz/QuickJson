@@ -5,7 +5,7 @@
       Target frameworks don't matter for binary compatibility, but are still
       used to ensure source compatibility at build time.
     -->
-    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net50</TargetFrameworks>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <Authors>$(Company)</Authors>
     <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose runtime dependencies.</Description>
@@ -28,8 +28,8 @@
 
   <ItemGroup>
     <None Include="../Readme.md" Pack="true" PackagePath="" Visible="false" />
-    <Content Include="*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" />
-    <Content Include="*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" />
+    <Content Include="*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" BuildAction="compile" />
+    <Content Include="*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" BuildAction="compile" />
   </ItemGroup>
 
   <ItemGroup>
