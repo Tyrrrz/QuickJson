@@ -1,4 +1,5 @@
-﻿namespace QuickJson
+﻿#nullable enable
+namespace QuickJson
 {
     internal class JsonString : JsonNode
     {
@@ -6,6 +7,7 @@
 
         public JsonString(string value) => Value = value;
 
-        public override string? TryGetString() => Value;
+        public override string TryGetString() => Value;
     }
 }
+#nullable restore

@@ -1,4 +1,5 @@
-﻿namespace QuickJson
+﻿#nullable enable
+namespace QuickJson
 {
     internal class JsonNumber : JsonNode
     {
@@ -9,3 +10,4 @@
         public override double? TryGetNumber() => Value;
     }
 }
+#nullable restore

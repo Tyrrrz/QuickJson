@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+#nullable enable
 namespace QuickJson
 {
     internal abstract class JsonNode
@@ -23,3 +24,4 @@ namespace QuickJson
             .Value;
     }
 }
+#nullable restore

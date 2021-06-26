@@ -1,4 +1,5 @@
-﻿namespace QuickJson
+﻿#nullable enable
+namespace QuickJson
 {
     internal class JsonBool : JsonNode
     {
@@ -12,3 +13,4 @@
         public override bool? TryGetBool() => Value;
     }
 }
+#nullable restore

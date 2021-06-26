@@ -1,4 +1,5 @@
-﻿namespace QuickJson
+﻿#nullable enable
+namespace QuickJson
 {
     internal class JsonProperty
     {
@@ -13,3 +14,4 @@
         }
     }
 }
+#nullable restore

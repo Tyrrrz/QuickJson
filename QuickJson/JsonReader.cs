@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
+#nullable enable
 namespace QuickJson
 {
     internal class JsonReader
@@ -60,6 +61,7 @@ namespace QuickJson
         {
             while (TryRead(char.IsWhiteSpace) is not null)
             {
+                // Nom nom
             }
         }
 
@@ -263,3 +265,4 @@ namespace QuickJson
         }
     }
 }
+#nullable restore

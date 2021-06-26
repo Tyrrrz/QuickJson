@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 
+#nullable enable
 namespace QuickJson
 {
     internal class JsonArray : JsonNode
@@ -11,3 +12,4 @@ namespace QuickJson
         public override IEnumerable<JsonNode> EnumerateChildren() => Children;
     }
 }
+#nullable restore
