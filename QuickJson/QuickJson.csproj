@@ -1,13 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <!--
+      Target frameworks don't matter for binary compatibility, but are still
+      used to ensure source compatibility at build time.
+    -->
+    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45</TargetFrameworks>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <Authors>$(Company)</Authors>
+    <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose runtime dependencies.</Description>
+    <PackageTags>quick json parse parser source-only</PackageTags>
+    <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
+    <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/blob/master/Changelog.md</PackageReleaseNotes>
+    <PackageReadmeFile>Readme.md</PackageReadmeFile>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- All types are internal so we need this for testing -->
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>$(AssemblyName).Tests</_Parameter1>
     </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../Readme.md" Pack="true" PackagePath="" Visible="false" />
+    <Content Include="*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" />
+    <Content Include="*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>
