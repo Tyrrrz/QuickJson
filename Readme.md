@@ -4,6 +4,7 @@
 [![Coverage](https://codecov.io/gh/Tyrrrz/QuickJson/branch/master/graph/badge.svg)](https://codecov.io/gh/Tyrrrz/QuickJson)
 [![Version](https://img.shields.io/nuget/v/QuickJson.svg)](https://nuget.org/packages/QuickJson)
 [![Downloads](https://img.shields.io/nuget/dt/QuickJson.svg)](https://nuget.org/packages/QuickJson)
+[![Discord](https://img.shields.io/discord/869237470565392384?label=discord)](https://discord.gg/2SUWKFnHSm)
 [![Donate](https://img.shields.io/badge/donate-$$$-purple.svg)](https://tyrrrz.me/donate)
 
 ✅ **Project status: active**.
