@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 
 #nullable enable
-namespace QuickJson
+namespace QuickJson;
+
+internal class JsonObject : JsonNode
 {
-    internal class JsonObject : JsonNode
-    {
-        public JsonProperty[] Properties { get; }
+    public JsonProperty[] Properties { get; }
 
-        public JsonObject(JsonProperty[] properties) => Properties = properties;
+    public JsonObject(JsonProperty[] properties) => Properties = properties;
 
-        public override IEnumerable<JsonProperty> EnumerateProperties() => Properties;
-    }
+    public override IEnumerable<JsonProperty> EnumerateProperties() => Properties;
 }
 #nullable restore

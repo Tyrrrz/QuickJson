@@ -1,9 +1,8 @@
 ﻿#nullable enable
-namespace QuickJson
+namespace QuickJson;
+
+internal class JsonNull : JsonNode
 {
-    internal class JsonNull : JsonNode
-    {
-        public static JsonNull Instance { get; } = new();
-    }
+    public static JsonNull Instance { get; } = new();
 }
 #nullable restore

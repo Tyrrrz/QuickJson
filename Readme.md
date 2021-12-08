@@ -17,7 +17,7 @@
 
 ## Usage
 
-> ⚠ To use this package, your project needs to target C# 8 or later.
+> ⚠ To use this package, your project needs to target C# 10 or later.
 You can ensure this by setting `<LangVersion>latest</LangVersion>` in the project file.
 
 To parse a JSON string, call `Json.TryParse(...)` or `Json.Parse(...)`:

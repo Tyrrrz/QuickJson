@@ -1,16 +1,15 @@
 ﻿#nullable enable
-namespace QuickJson
+namespace QuickJson;
+
+internal class JsonBool : JsonNode
 {
-    internal class JsonBool : JsonNode
-    {
-        public static JsonBool True { get; } = new(true);
-        public static JsonBool False { get; } = new(false);
+    public static JsonBool True { get; } = new(true);
+    public static JsonBool False { get; } = new(false);
 
-        public bool Value { get; }
+    public bool Value { get; }
 
-        public JsonBool(bool value) => Value = value;
+    public JsonBool(bool value) => Value = value;
 
-        public override bool? TryGetBool() => Value;
-    }
+    public override bool? TryGetBool() => Value;
 }
 #nullable restore

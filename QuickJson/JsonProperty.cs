@@ -1,17 +1,16 @@
 ﻿#nullable enable
-namespace QuickJson
+namespace QuickJson;
+
+internal class JsonProperty
 {
-    internal class JsonProperty
+    public string Name { get; }
+
+    public JsonNode Value { get; }
+
+    public JsonProperty(string name, JsonNode value)
     {
-        public string Name { get; }
-
-        public JsonNode Value { get; }
-
-        public JsonProperty(string name, JsonNode value)
-        {
-            Name = name;
-            Value = value;
-        }
+        Name = name;
+        Value = value;
     }
 }
 #nullable restore
