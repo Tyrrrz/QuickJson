@@ -7,7 +7,7 @@
 [![Discord](https://img.shields.io/discord/869237470565392384?label=discord)](https://discord.gg/2SUWKFnHSm)
 [![Donate](https://img.shields.io/badge/donate-$$$-purple.svg)](https://tyrrrz.me/donate)
 
-✅ **Project status: active**. [What does it mean?](https://github.com/Tyrrrz/shared/blob/master/docs/project-status.md)
+✅ **Project status: active**. [What does it mean?](https://github.com/Tyrrrz/.github/blob/master/docs/project-status.md)
 
 **QuickJson** is a very basic JSON parser distributed as a source-only NuGet package, which allows it to be referenced without imposing any runtime dependencies.
 
