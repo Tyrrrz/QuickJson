@@ -9,6 +9,7 @@
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <Authors>$(Company)</Authors>
     <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose runtime dependencies.</Description>
+    <IsPackable>true</IsPackable>
     <PackageTags>quick json parse parser source-only</PackageTags>
     <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/blob/master/Changelog.md</PackageReleaseNotes>
