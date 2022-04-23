@@ -30,7 +30,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().BeTrue();
+        value.Should().BeTrue();
     }
 
     [Fact]
@@ -54,7 +54,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be(1234);
+        value.Should().Be(1234);
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be(1234.56);
+        value.Should().Be(1234.56);
     }
 
     [Fact]
@@ -78,7 +78,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("foo");
+        value.Should().Be("foo");
     }
 
     [Fact]
@@ -90,7 +90,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("");
+        value.Should().Be("");
     }
 
     [Fact]
@@ -102,7 +102,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("\tfoo \\ \" / \b \f bar\r\n");
+        value.Should().Be("\tfoo \\ \" / \b \f bar\r\n");
     }
 
     [Fact]
@@ -114,7 +114,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("foo \\x");
+        value.Should().Be("foo \\x");
     }
 
     [Fact]
@@ -126,7 +126,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("fooøbar");
+        value.Should().Be("fooøbar");
     }
 
     [Fact]
@@ -138,7 +138,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("foo \\u123");
+        value.Should().Be("foo \\u123");
     }
 
     [Fact]
@@ -153,13 +153,13 @@ public class MainSpecs
 
         // Assert
         value1.Should().NotBeNull();
-        value1?.Should().Be(1);
+        value1.Should().Be(1);
 
         value2.Should().NotBeNull();
-        value2?.Should().Be("foo");
+        value2.Should().Be("foo");
 
         value3.Should().NotBeNull();
-        value3?.Should().BeTrue();
+        value3.Should().BeTrue();
     }
 
     [Fact]
@@ -174,13 +174,13 @@ public class MainSpecs
 
         // Assert
         value1.Should().NotBeNull();
-        value1?.Should().Be(1);
+        value1.Should().Be(1);
 
         value2.Should().NotBeNull();
-        value2?.Should().Be("zzz");
+        value2.Should().Be("zzz");
 
         value3.Should().NotBeNull();
-        value3?.Should().BeTrue();
+        value3.Should().BeTrue();
     }
 
     [Fact]
@@ -269,7 +269,7 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("bar");
+        value.Should().Be("bar");
     }
 
     [Fact]
@@ -281,11 +281,11 @@ public class MainSpecs
 
         // Assert
         value.Should().NotBeNull();
-        value?.Should().Be("bar");
+        value.Should().Be("bar");
     }
 
     [Fact]
-    public void User_can_try_to_parse_invalid_JSON_and_it_fails()
+    public void User_can_try_to_parse_invalid_JSON_and_receive_an_exception()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("[abc}"));
@@ -293,7 +293,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void User_can_try_to_parse_invalid_JSON_safely_and_it_returns_null()
+    public void User_can_try_to_parse_invalid_JSON_safely_and_receive_null()
     {
         // Act
         var json = Json.TryParse("[abc}");
@@ -303,7 +303,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void User_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_it_fails()
+    public void User_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_receive_an_exception()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("true_"));
@@ -311,7 +311,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void User_can_try_to_safely_extract_an_invalid_value_from_a_node_and_it_returns_null()
+    public void User_can_try_to_safely_extract_an_invalid_value_from_a_node_and_receive_null()
     {
         // Arrange
         var json = Json.Parse("null");
