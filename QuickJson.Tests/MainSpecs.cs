@@ -15,7 +15,10 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_null_node()
     {
         // Act
-        var json = Json.Parse("null");
+        var json = Json.Parse(
+            // language=JSON
+            "null"
+        );
 
         // Assert
         json.Should().BeOfType<JsonNull>();
@@ -25,7 +28,11 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_true_bool_node()
     {
         // Act
-        var json = Json.Parse("true");
+        var json = Json.Parse(
+            // language=JSON
+            "true"
+        );
+
         var value = json.TryGetBool();
 
         // Assert
@@ -37,7 +44,11 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_false_bool_node()
     {
         // Act
-        var json = Json.Parse("false");
+        var json = Json.Parse(
+            // language=JSON
+            "false"
+        );
+
         var value = json.TryGetBool();
 
         // Assert
@@ -49,7 +60,11 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_an_integer_number_node()
     {
         // Act
-        var json = Json.Parse("1234");
+        var json = Json.Parse(
+            // language=JSON
+            "1234"
+        );
+
         var value = json.TryGetNumber();
 
         // Assert
@@ -61,7 +76,11 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_floating_point_number_node()
     {
         // Act
-        var json = Json.Parse("1234.56");
+        var json = Json.Parse(
+            // language=JSON
+            "1234.56"
+        );
+
         var value = json.TryGetNumber();
 
         // Assert
@@ -73,7 +92,13 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node()
     {
         // Act
-        var json = Json.Parse("\"foo\"");
+        var json = Json.Parse(
+            // language=JSON
+            """
+            "foo"
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -85,7 +110,13 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node_of_zero_length()
     {
         // Act
-        var json = Json.Parse("\"\"");
+        var json = Json.Parse(
+            // language=JSON
+            """
+            ""
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -98,6 +129,7 @@ public class MainSpecs
     {
         // Act
         var json = Json.Parse(
+            // language=JSON
             """
             "\tfoo \\ \" \/ \b \f bar\r\n"
             """
@@ -115,6 +147,7 @@ public class MainSpecs
     {
         // Act
         var json = Json.Parse(
+            // language=JSON
             """
             "foo \x"
             """
@@ -132,6 +165,7 @@ public class MainSpecs
     {
         // Act
         var json = Json.Parse(
+            // language=JSON
             """
             "foo\u00f8bar"
             """
@@ -149,6 +183,7 @@ public class MainSpecs
     {
         // Act
         var json = Json.Parse(
+            // language=JSON
             """
             "foo \u123"
             """
@@ -165,7 +200,10 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_an_array_node()
     {
         // Act
-        var json = Json.Parse("""[1, "foo", true]""");
+        var json = Json.Parse(
+            // language=JSON
+            """[1, "foo", true]"""
+        );
 
         var value1 = json.TryGetChild(0)?.TryGetNumber();
         var value2 = json.TryGetChild(1)?.TryGetString();
@@ -186,7 +224,10 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_an_object_node()
     {
         // Act
-        var json = Json.Parse("""{"foo": 1, "bar": "zzz", "baz": true}""");
+        var json = Json.Parse(
+            // language=JSON
+            """{"foo": 1, "bar": "zzz", "baz": true}"""
+        );
 
         var value1 = json.TryGetChild("foo")?.TryGetNumber();
         var value2 = json.TryGetChild("bar")?.TryGetString();
@@ -208,6 +249,7 @@ public class MainSpecs
     {
         // Act
         var json = Json.Parse(
+            // language=JSON
             """
             {
                 "release": {
@@ -286,7 +328,11 @@ public class MainSpecs
     public void User_can_parse_JSON_with_leading_whitespace()
     {
         // Act
-        var json = Json.Parse("""   {"foo": "bar"}""");
+        var json = Json.Parse(
+            // language=JSON
+            """   {"foo": "bar"}"""
+        );
+
         var value = json.TryGetChild("foo")?.TryGetString();
 
         // Assert
@@ -298,7 +344,11 @@ public class MainSpecs
     public void User_can_parse_JSON_with_trailing_whitespace()
     {
         // Act
-        var json = Json.Parse("""{"foo": "bar"}   """);
+        var json = Json.Parse(
+            // language=JSON
+            """{"foo": "bar"}   """
+        );
+
         var value = json.TryGetChild("foo")?.TryGetString();
 
         // Assert
@@ -310,7 +360,12 @@ public class MainSpecs
     public void User_can_try_to_parse_invalid_JSON_and_receive_an_exception()
     {
         // Act & assert
-        var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("[abc}"));
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            Json.Parse(
+                "[abc}"
+            )
+        );
+
         _output.WriteLine(ex.Message);
     }
 
@@ -318,7 +373,9 @@ public class MainSpecs
     public void User_can_try_to_parse_invalid_JSON_safely_and_receive_null()
     {
         // Act
-        var json = Json.TryParse("[abc}");
+        var json = Json.TryParse(
+            "[abc}"
+        );
 
         // Assert
         json.Should().BeNull();
@@ -328,7 +385,12 @@ public class MainSpecs
     public void User_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_receive_an_exception()
     {
         // Act & assert
-        var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("true_"));
+        var ex = Assert.Throws<InvalidOperationException>(() =>
+            Json.Parse(
+                "true_"
+            )
+        );
+
         _output.WriteLine(ex.Message);
     }
 
@@ -336,7 +398,10 @@ public class MainSpecs
     public void User_can_try_to_safely_extract_an_invalid_value_from_a_node_and_receive_null()
     {
         // Arrange
-        var json = Json.Parse("null");
+        var json = Json.Parse(
+            // language=JSON
+            "null"
+        );
 
         // Act
         var asBool = json.TryGetBool();
