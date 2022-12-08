@@ -97,7 +97,12 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node_with_escaped_characters()
     {
         // Act
-        var json = Json.Parse("\"\\tfoo \\\\ \\\" \\/ \\b \\f bar\\r\\n\"");
+        var json = Json.Parse(
+            """
+            "\tfoo \\ \" \/ \b \f bar\r\n"
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -109,7 +114,12 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node_with_invalid_escaped_characters()
     {
         // Act
-        var json = Json.Parse("\"foo \\x\"");
+        var json = Json.Parse(
+            """
+            "foo \x"
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -121,7 +131,12 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node_with_an_escaped_unicode_literal()
     {
         // Act
-        var json = Json.Parse("\"foo\\u00f8bar\"");
+        var json = Json.Parse(
+            """
+            "foo\u00f8bar"
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -133,7 +148,12 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_string_node_with_an_invalid_escaped_unicode_literal()
     {
         // Act
-        var json = Json.Parse("\"foo \\u123\"");
+        var json = Json.Parse(
+            """
+            "foo \u123"
+            """
+        );
+
         var value = json.TryGetString();
 
         // Assert
@@ -145,7 +165,7 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_an_array_node()
     {
         // Act
-        var json = Json.Parse("[1, \"foo\", true]");
+        var json = Json.Parse("""[1, "foo", true]""");
 
         var value1 = json.TryGetChild(0)?.TryGetNumber();
         var value2 = json.TryGetChild(1)?.TryGetString();
@@ -166,7 +186,7 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_an_object_node()
     {
         // Act
-        var json = Json.Parse("{\"foo\": 1, \"bar\": \"zzz\", \"baz\": true}");
+        var json = Json.Parse("""{"foo": 1, "bar": "zzz", "baz": true}""");
 
         var value1 = json.TryGetChild("foo")?.TryGetNumber();
         var value2 = json.TryGetChild("bar")?.TryGetString();
@@ -187,25 +207,27 @@ public class MainSpecs
     public void User_can_parse_JSON_containing_a_complex_structure()
     {
         // Act
-        var json = Json.Parse(@"
-                {
-                    ""release"": {
-                        ""version"": ""1.2.3"",
-                        ""isLatest"": true,
-                        ""size"": 99999,
-                        ""files"": [
-                            {
-                                ""url"": ""https://example.com/1"",
-                                ""name"": ""file1.txt""
-                            },
-                            {
-                                ""url"": ""https://example.com/2"",
-                                ""name"": ""file2.txt""
-                            }
-                        ]
-                    }
+        var json = Json.Parse(
+            """
+            {
+                "release": {
+                    "version": "1.2.3",
+                    "isLatest": true,
+                    "size": 99999,
+                    "files": [
+                        {
+                            "url": "https://example.com/1",
+                            "name": "file1.txt"
+                        },
+                        {
+                            "url": "https://example.com/2",
+                            "name": "file2.txt"
+                        }
+                    ]
                 }
-            ");
+            }
+            """
+        );
 
         var version = json
             .TryGetChild("release")?
@@ -264,7 +286,7 @@ public class MainSpecs
     public void User_can_parse_JSON_with_leading_whitespace()
     {
         // Act
-        var json = Json.Parse("   {\"foo\": \"bar\"}");
+        var json = Json.Parse("""   {"foo": "bar"}""");
         var value = json.TryGetChild("foo")?.TryGetString();
 
         // Assert
@@ -276,7 +298,7 @@ public class MainSpecs
     public void User_can_parse_JSON_with_trailing_whitespace()
     {
         // Act
-        var json = Json.Parse("{\"foo\": \"bar\"}   ");
+        var json = Json.Parse("""{"foo": "bar"}   """);
         var value = json.TryGetChild("foo")?.TryGetString();
 
         // Assert
