@@ -1,6 +1,6 @@
 # QuickJson
 
-[![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://vshymanskyy.github.io/StandWithUkraine)
+[![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://tyrrrz.me/ukraine)
 [![Build](https://img.shields.io/github/actions/workflow/status/Tyrrrz/QuickJson/main.yml?branch=master)](https://github.com/Tyrrrz/QuickJson/actions)
 [![Coverage](https://img.shields.io/codecov/c/github/Tyrrrz/QuickJson/master)](https://codecov.io/gh/Tyrrrz/QuickJson)
 [![Version](https://img.shields.io/nuget/v/QuickJson.svg)](https://nuget.org/packages/QuickJson)
@@ -66,7 +66,7 @@ foreach (var prop in json.EnumerateProperties())
 {
     var name = prop.Name; // string
     var value = prop.Value; // JsonNode
-    
+
     // ...
 }
 
