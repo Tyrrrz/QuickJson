@@ -11,4 +11,3 @@ internal class JsonArray : JsonNode
 
     public override IEnumerable<JsonNode> EnumerateChildren() => Children;
 }
-#nullable restore

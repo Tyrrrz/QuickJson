@@ -7,4 +7,3 @@ internal static class Json
 
     public static JsonNode Parse(string source) => new JsonReader(source).ReadDocument();
 }
-#nullable restore

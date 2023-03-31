@@ -13,4 +13,3 @@ internal class JsonProperty
         Value = value;
     }
 }
-#nullable restore

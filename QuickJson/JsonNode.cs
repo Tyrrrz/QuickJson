@@ -24,4 +24,3 @@ internal abstract class JsonNode
         .FirstOrDefault(p => string.Equals(p.Name, propertyName, StringComparison.Ordinal))?
         .Value;
 }
-#nullable restore

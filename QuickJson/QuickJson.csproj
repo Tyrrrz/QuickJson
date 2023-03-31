@@ -13,7 +13,7 @@
 
   <PropertyGroup>
     <Authors>$(Company)</Authors>
-    <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose runtime dependencies.</Description>
+    <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose run-time dependencies.</Description>
     <PackageTags>quick json parse parser source-only</PackageTags>
     <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/blob/master/Changelog.md</PackageReleaseNotes>
@@ -32,8 +32,8 @@
 
   <ItemGroup>
     <None Include="../Readme.md" Pack="true" PackagePath="" Visible="false" />
-    <Content Include="*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" BuildAction="compile" />
-    <Content Include="*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" BuildAction="compile" />
+    <Content Include="**/*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" BuildAction="compile" />
+    <Content Include="**/*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" BuildAction="compile" />
   </ItemGroup>
 
   <ItemGroup>

@@ -11,4 +11,3 @@ internal class JsonObject : JsonNode
 
     public override IEnumerable<JsonProperty> EnumerateProperties() => Properties;
 }
-#nullable restore

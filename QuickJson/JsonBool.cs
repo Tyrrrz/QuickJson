@@ -12,4 +12,3 @@ internal class JsonBool : JsonNode
 
     public override bool? TryGetBool() => Value;
 }
-#nullable restore

@@ -9,4 +9,3 @@ internal class JsonString : JsonNode
 
     public override string TryGetString() => Value;
 }
-#nullable restore

@@ -9,4 +9,3 @@ internal class JsonNumber : JsonNode
 
     public override double? TryGetNumber() => Value;
 }
-#nullable restore

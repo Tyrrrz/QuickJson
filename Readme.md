@@ -11,7 +11,7 @@
 
 > 🟡 **Project status**: maintenance mode<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/project-status.md)</sup>
 
-**QuickJson** is a very basic JSON parser distributed as a source-only NuGet package, which allows it to be referenced without imposing any runtime dependencies.
+**QuickJson** is a very basic JSON parser distributed as a source-only NuGet package, which allows it to be referenced without imposing any run-time dependencies.
 
 ## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/why-so-political.md)</sup>
 
