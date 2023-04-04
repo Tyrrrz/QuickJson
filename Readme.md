@@ -11,7 +11,7 @@
 
 > 🟡 **Project status**: maintenance mode<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/project-status.md)</sup>
 
-**QuickJson** is a very basic JSON parser distributed as a source-only NuGet package, which allows it to be referenced without imposing any run-time dependencies.
+**QuickJson** is a very basic JSON parser, distributed as a source-only package that can be referenced without imposing any run-time dependencies.
 
 ## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/why-so-political.md)</sup>
 
@@ -28,11 +28,11 @@ To learn more about the war and how you can help, [click here](https://tyrrrz.me
 
 - 📦 [NuGet](https://nuget.org/packages/QuickJson): `dotnet add package QuickJson`
 
-## Usage
-
 > **Warning**:
 > To use this package, your project needs to target C# 10 or later.
 > You can ensure this by setting `<LangVersion>latest</LangVersion>` in the project file.
+
+## Usage
 
 To parse a JSON string, call `Json.TryParse(...)` or `Json.Parse(...)`:
 

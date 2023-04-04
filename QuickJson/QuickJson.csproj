@@ -1,10 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <!--
-      Target frameworks don't matter for binary compatibility, but are still
-      used to ensure source compatibility at build time.
-    -->
+    <!-- Target frameworks here are only used to verify source compatibility with different API levels -->
     <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net50</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <NoPackageAnalysis>true</NoPackageAnalysis>
