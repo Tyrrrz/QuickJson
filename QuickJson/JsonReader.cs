@@ -10,20 +10,20 @@ namespace QuickJson;
 internal class JsonReader
 {
     private readonly string _source;
-    private int _index;
+    private int _position;
 
     public JsonReader(string source) => _source = source;
 
     private char? TryRead(Func<char, bool> predicate)
     {
-        if (_index >= _source.Length)
+        if (_position >= _source.Length)
             return null;
 
-        var c = _source[_index];
+        var c = _source[_position];
         if (!predicate(c))
             return null;
 
-        _index++;
+        _position++;
         return c;
     }
 
@@ -31,14 +31,14 @@ internal class JsonReader
 
     private string? TryRead(int length, Func<string, bool> predicate)
     {
-        if (_index + length > _source.Length)
+        if (_position + length > _source.Length)
             return null;
 
-        var sub = _source.Substring(_index, length);
+        var sub = _source.Substring(_position, length);
         if (!predicate(sub))
             return null;
 
-        _index += length;
+        _position += length;
         return sub;
     }
 
@@ -104,7 +104,7 @@ internal class JsonReader
     {
         char? TryReadEscape()
         {
-            var indexCheckpoint = _index;
+            var checkpoint = _position;
 
             if (!TryRead('\\'))
                 return null;
@@ -125,7 +125,7 @@ internal class JsonReader
                     }
 
                     // Backtrack to the beginning to consume the characters raw
-                    _index = indexCheckpoint;
+                    _position = checkpoint;
                     return null;
                 }
 
@@ -142,7 +142,7 @@ internal class JsonReader
             }
 
             // Backtrack to the beginning to consume the characters raw
-            _index = indexCheckpoint;
+            _position = checkpoint;
             return null;
         }
 
@@ -250,7 +250,7 @@ internal class JsonReader
         SkipWhiteSpace();
 
         // Ensure that the entire input has been consumed
-        if (_index < _source.Length)
+        if (_position < _source.Length)
             return null;
 
         return node;
@@ -261,9 +261,15 @@ internal class JsonReader
         if (TryReadDocument() is { } result)
             return result;
 
+        var remainingSource = _source.Substring(
+            _position,
+            // Limit the reported remainder to a reasonable length
+            Math.Min(_source.Length - _position, 100)
+        );
+
         throw new InvalidOperationException(
             "Failed to parse JSON. " +
-            $"Unexpected character sequence at position {_index}: '{_source.Substring(_index)}'."
+            $"Unexpected character sequence at position {_position}: '{remainingSource}'."
         );
     }
 }
