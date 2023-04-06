@@ -155,7 +155,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node_of_zero_length()
+    public void I_can_parse_JSON_containing_an_empty_string_node()
     {
         // Act
         var json = Json.Parse(
