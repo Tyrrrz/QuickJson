@@ -16,40 +16,30 @@ internal class JsonReader
 
     private char? TryRead(Func<char, bool> predicate)
     {
-        if (_index < _source.Length)
-        {
-            var c = _source[_index];
-
-            if (predicate(c))
-            {
-                _index++;
-                return c;
-            }
-
+        if (_index >= _source.Length)
             return null;
-        }
 
-        return null;
+        var c = _source[_index];
+        if (!predicate(c))
+            return null;
+
+        _index++;
+        return c;
     }
 
     private bool TryRead(char expectedChar) => TryRead(x => x == expectedChar) is not null;
 
     private string? TryRead(int length, Func<string, bool> predicate)
     {
-        if (_index + length <= _source.Length)
-        {
-            var sub = _source.Substring(_index, length);
-
-            if (predicate(sub))
-            {
-                _index += length;
-                return sub;
-            }
-
+        if (_index + length > _source.Length)
             return null;
-        }
 
-        return null;
+        var sub = _source.Substring(_index, length);
+        if (!predicate(sub))
+            return null;
+
+        _index += length;
+        return sub;
     }
 
     private bool TryRead(string expectedString) => TryRead(
@@ -89,9 +79,21 @@ internal class JsonReader
     {
         var buffer = new StringBuilder();
 
-        // Collect digit characters and decimal separator character
-        while (TryRead(x => char.IsDigit(x) || x == '.') is { } c)
+        // Read minus sign
+        if (TryRead('-'))
+            buffer.Append('-');
+
+        // Read digit characters
+        while (TryRead(char.IsDigit) is { } c)
             buffer.Append(c);
+
+        // Read decimal point and following digit characters
+        if (TryRead('.'))
+        {
+            buffer.Append('.');
+            while (TryRead(char.IsDigit) is { } c)
+                buffer.Append(c);
+        }
 
         return double.TryParse(buffer.ToString(), NumberStyles.Number, CultureInfo.InvariantCulture, out var value)
             ? new JsonNumber(value)
@@ -113,7 +115,6 @@ internal class JsonReader
                 if (c == 'u')
                 {
                     var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
-
                     if (hexSequence is not null && short.TryParse(
                             hexSequence,
                             NumberStyles.AllowHexSpecifier,

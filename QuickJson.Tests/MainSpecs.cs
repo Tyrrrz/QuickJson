@@ -73,6 +73,22 @@ public class MainSpecs
     }
 
     [Fact]
+    public void I_can_parse_JSON_containing_a_negative_integer_number_node()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            "-1234"
+        );
+
+        var value = json.TryGetNumber();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be(-1234);
+    }
+
+    [Fact]
     public void I_can_parse_JSON_containing_a_floating_point_number_node()
     {
         // Act
@@ -86,6 +102,38 @@ public class MainSpecs
         // Assert
         value.Should().NotBeNull();
         value.Should().Be(1234.56);
+    }
+
+    [Fact]
+    public void I_can_parse_JSON_containing_a_negative_floating_point_number_node()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            "-1234.56"
+        );
+
+        var value = json.TryGetNumber();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be(-1234.56);
+    }
+
+    [Fact]
+    public void I_can_parse_JSON_containing_a_zero_number_node()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            "0"
+        );
+
+        var value = json.TryGetNumber();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be(0);
     }
 
     [Fact]
