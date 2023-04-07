@@ -5,14 +5,14 @@ using Xunit.Abstractions;
 
 namespace QuickJson.Tests;
 
-public class MainSpecs
+public class JsonSpecs
 {
     private readonly ITestOutputHelper _output;
 
-    public MainSpecs(ITestOutputHelper output) => _output = output;
+    public JsonSpecs(ITestOutputHelper output) => _output = output;
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_null_node()
+    public void I_can_parse_JSON_containing_a_null_value()
     {
         // Act
         var json = Json.Parse(
@@ -25,7 +25,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_true_bool_node()
+    public void I_can_parse_JSON_containing_a_true_value()
     {
         // Act
         var json = Json.Parse(
@@ -41,7 +41,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_false_bool_node()
+    public void I_can_parse_JSON_containing_a_false_value()
     {
         // Act
         var json = Json.Parse(
@@ -57,7 +57,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_an_integer_number_node()
+    public void I_can_parse_JSON_containing_an_integer_number()
     {
         // Act
         var json = Json.Parse(
@@ -73,7 +73,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_negative_integer_number_node()
+    public void I_can_parse_JSON_containing_a_negative_integer_number()
     {
         // Act
         var json = Json.Parse(
@@ -89,7 +89,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_floating_point_number_node()
+    public void I_can_parse_JSON_containing_a_floating_point_number()
     {
         // Act
         var json = Json.Parse(
@@ -105,7 +105,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_negative_floating_point_number_node()
+    public void I_can_parse_JSON_containing_a_negative_floating_point_number()
     {
         // Act
         var json = Json.Parse(
@@ -121,7 +121,39 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_zero_number_node()
+    public void I_can_parse_JSON_containing_a_floating_point_number_in_exponential_notation()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            "1234.56e-2"
+        );
+
+        var value = json.TryGetNumber();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be(12.3456);
+    }
+
+    [Fact]
+    public void I_can_parse_JSON_containing_a_negative_floating_point_number_in_exponential_notation()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            "-1234.56e-2"
+        );
+
+        var value = json.TryGetNumber();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be(-12.3456);
+    }
+
+    [Fact]
+    public void I_can_parse_JSON_containing_a_zero_number()
     {
         // Act
         var json = Json.Parse(
@@ -137,7 +169,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node()
+    public void I_can_parse_JSON_containing_a_string()
     {
         // Act
         var json = Json.Parse(
@@ -155,7 +187,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_an_empty_string_node()
+    public void I_can_parse_JSON_containing_an_empty_string()
     {
         // Act
         var json = Json.Parse(
@@ -173,7 +205,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node_with_escaped_characters()
+    public void I_can_parse_JSON_containing_a_string_with_escaped_characters()
     {
         // Act
         var json = Json.Parse(
@@ -191,7 +223,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node_with_invalid_escaped_characters()
+    public void I_can_parse_JSON_containing_a_string_with_invalid_escaped_characters()
     {
         // Act
         var json = Json.Parse(
@@ -209,7 +241,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node_with_an_escaped_unicode_literal()
+    public void I_can_parse_JSON_containing_a_string_with_an_escaped_unicode_literal()
     {
         // Act
         var json = Json.Parse(
@@ -227,7 +259,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_string_node_with_an_invalid_escaped_unicode_literal()
+    public void I_can_parse_JSON_containing_a_string_with_an_invalid_escaped_unicode_literal()
     {
         // Act
         var json = Json.Parse(
@@ -245,7 +277,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_an_array_node()
+    public void I_can_parse_JSON_containing_an_array()
     {
         // Act
         var json = Json.Parse(
@@ -269,7 +301,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_an_object_node()
+    public void I_can_parse_JSON_containing_an_object()
     {
         // Act
         var json = Json.Parse(
@@ -293,7 +325,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_parse_JSON_containing_a_complex_structure()
+    public void I_can_parse_JSON_containing_a_complex_nested_structure()
     {
         // Act
         var json = Json.Parse(
@@ -405,7 +437,23 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_try_to_parse_invalid_JSON_and_receive_an_exception()
+    public void I_can_parse_JSON_with_leading_and_trailing_whitespace()
+    {
+        // Act
+        var json = Json.Parse(
+            // language=JSON
+            """   {"foo": "bar"}   """
+        );
+
+        var value = json.TryGetChild("foo")?.TryGetString();
+
+        // Assert
+        value.Should().NotBeNull();
+        value.Should().Be("bar");
+    }
+
+    [Fact]
+    public void I_can_try_to_parse_malformed_JSON_and_get_an_exception()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() =>
@@ -418,7 +466,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_try_to_parse_invalid_JSON_safely_and_receive_null()
+    public void I_can_try_to_safely_parse_malformed_JSON_and_get_null()
     {
         // Act
         var json = Json.TryParse(
@@ -430,7 +478,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_receive_an_exception()
+    public void I_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_get_an_exception()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() =>
@@ -443,7 +491,7 @@ public class MainSpecs
     }
 
     [Fact]
-    public void I_can_try_to_safely_extract_an_invalid_value_from_a_node_and_receive_null()
+    public void I_can_try_to_safely_extract_a_value_of_mismatching_type_and_get_null()
     {
         // Arrange
         var json = Json.Parse(

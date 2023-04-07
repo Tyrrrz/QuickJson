@@ -19,27 +19,27 @@ internal class JsonReader
         if (_position >= _source.Length)
             return null;
 
-        var c = _source[_position];
-        if (!predicate(c))
+        var ch = _source[_position];
+        if (!predicate(ch))
             return null;
 
         _position++;
-        return c;
+        return ch;
     }
 
-    private bool TryRead(char expectedChar) => TryRead(x => x == expectedChar) is not null;
+    private bool TryRead(char expectedChar) => TryRead(c => c == expectedChar) is not null;
 
     private string? TryRead(int length, Func<string, bool> predicate)
     {
         if (_position + length > _source.Length)
             return null;
 
-        var sub = _source.Substring(_position, length);
-        if (!predicate(sub))
+        var str = _source.Substring(_position, length);
+        if (!predicate(str))
             return null;
 
         _position += length;
-        return sub;
+        return str;
     }
 
     private bool TryRead(string expectedString) => TryRead(
@@ -79,23 +79,38 @@ internal class JsonReader
     {
         var buffer = new StringBuilder();
 
-        // Read minus sign
+        // Read sign
         if (TryRead('-'))
             buffer.Append('-');
 
         // Read digit characters
-        while (TryRead(char.IsDigit) is { } c)
-            buffer.Append(c);
+        while (TryRead(char.IsDigit) is { } digit)
+            buffer.Append(digit);
 
         // Read decimal point and following digit characters
         if (TryRead('.'))
         {
             buffer.Append('.');
-            while (TryRead(char.IsDigit) is { } c)
-                buffer.Append(c);
+            while (TryRead(char.IsDigit) is { } digit)
+                buffer.Append(digit);
+
+            // Read exponent and following digit characters
+            if (TryRead('e') || TryRead('E'))
+            {
+                buffer.Append('e');
+                if (TryRead(c => c is '+' or '-') is { } sign)
+                    buffer.Append(sign);
+
+                while (TryRead(char.IsDigit) is { } digit)
+                    buffer.Append(digit);
+            }
         }
 
-        return double.TryParse(buffer.ToString(), NumberStyles.Number, CultureInfo.InvariantCulture, out var value)
+        return double.TryParse(
+            buffer.ToString(),
+            NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent,
+            CultureInfo.InvariantCulture,
+            out var value)
             ? new JsonNumber(value)
             : null;
     }
@@ -109,10 +124,10 @@ internal class JsonReader
             if (!TryRead('\\'))
                 return null;
 
-            if (TryRead(x => x is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is { } c)
+            if (TryRead(c => c is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is { } escaped)
             {
                 // Unicode character escape
-                if (c == 'u')
+                if (escaped == 'u')
                 {
                     var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
                     if (hexSequence is not null && short.TryParse(
@@ -130,14 +145,14 @@ internal class JsonReader
                 }
 
                 // Basic escape
-                return c switch
+                return escaped switch
                 {
                     'b' => '\b',
                     'f' => '\f',
                     'n' => '\n',
                     'r' => '\r',
                     't' => '\t',
-                    _ => c
+                    _ => escaped
                 };
             }
 
@@ -152,8 +167,8 @@ internal class JsonReader
         var buffer = new StringBuilder();
 
         // Read characters until closing double quote while handling escapes
-        while ((TryReadEscape() ?? TryRead(x => x != '"')) is { } c)
-            buffer.Append(c);
+        while ((TryReadEscape() ?? TryRead(c => c != '"')) is { } ch)
+            buffer.Append(ch);
 
         if (!TryRead('"'))
             return null;
