@@ -126,7 +126,7 @@ internal class JsonReader
 
             if (TryRead(c => c is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is { } escaped)
             {
-                // Unicode character escape
+                // Unicode character escape, read 4 hex digits as codepoint
                 if (escaped == 'u')
                 {
                     var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
