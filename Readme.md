@@ -38,10 +38,20 @@ To parse a JSON string, call `Json.TryParse(...)` or `Json.Parse(...)`:
 
 ```csharp
 // This returns null on invalid JSON
-var json = Json.TryParse("{ \"foo\": [ 69, true, \"bar\" ] }");
+var json = Json.TryParse(
+    """
+    {
+        "foo": [
+            69,
+            true,
+            "bar"
+        ]
+    }
+    """
+);
 
 // This throws on invalid JSON
-var json = Json.Parse("{ \"foo\": [ 69, true, \"bar\" ] }");
+var json = Json.Parse("...");
 ```
 
 To retrieve a nested node in the parsed JSON, use `TryGetChild(...)`:
@@ -81,7 +91,7 @@ In order to extract values from nodes, use `TryGetNumber()`, `TryGetBool()`, or 
 
 ```csharp
 // May return null if the node contains a value of a different kind
-var value1 = child1?.TryGetNumber(); // 69
-var value2 = child2?.TryGetBool(); // true
-var value3 = child3?.TryGetString(); // "bar"
+var value1 = child1?.TryGetNumber(); // double
+var value2 = child2?.TryGetBool(); // bool
+var value3 = child3?.TryGetString(); // string
 ```
