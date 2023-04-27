@@ -286,7 +286,13 @@ public class JsonSpecs
         // Act
         var json = Json.Parse(
             // language=JSON
-            """{"foo": 1, "bar": "zzz", "baz": true}"""
+            """
+            {
+                "foo": 1,
+                "bar": "zzz",
+                "baz": true
+            }
+            """
         );
 
         var value1 = json.GetChild("foo").GetNumber();
