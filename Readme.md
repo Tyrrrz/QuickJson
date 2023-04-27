@@ -54,7 +54,7 @@ var json = Json.TryParse(
 var json = Json.Parse("...");
 ```
 
-To retrieve a nested node in the parsed JSON, use `TryGetChild(...)`:
+To retrieve a nested node in the parsed JSON, use `[Try]GetChild(...)`:
 
 ```csharp
 // May return null if the property doesn't exist
@@ -87,7 +87,7 @@ foreach (var child in json.EnumerateChildren())
 }
 ```
 
-In order to extract values from nodes, use `TryGetNumber()`, `TryGetBool()`, or `TryGetString()`:
+In order to extract values from nodes, use `[Try]GetNumber()`, `[Try]GetBool()`, or `[Try]GetString()`:
 
 ```csharp
 // May return null if the node contains a value of a different kind

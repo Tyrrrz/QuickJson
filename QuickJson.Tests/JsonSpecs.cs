@@ -33,10 +33,9 @@ public class JsonSpecs
             "true"
         );
 
-        var value = json.TryGetBool();
+        var value = json.GetBool();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().BeTrue();
     }
 
@@ -49,10 +48,9 @@ public class JsonSpecs
             "false"
         );
 
-        var value = json.TryGetBool();
+        var value = json.GetBool();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().BeFalse();
     }
 
@@ -65,10 +63,9 @@ public class JsonSpecs
             "1234"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(1234);
     }
 
@@ -81,10 +78,9 @@ public class JsonSpecs
             "-1234"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(-1234);
     }
 
@@ -97,10 +93,9 @@ public class JsonSpecs
             "1234.56"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(1234.56);
     }
 
@@ -113,10 +108,9 @@ public class JsonSpecs
             "-1234.56"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(-1234.56);
     }
 
@@ -129,10 +123,9 @@ public class JsonSpecs
             "1234.56e-2"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(12.3456);
     }
 
@@ -145,10 +138,9 @@ public class JsonSpecs
             "-1234.56e-2"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(-12.3456);
     }
 
@@ -161,10 +153,9 @@ public class JsonSpecs
             "0"
         );
 
-        var value = json.TryGetNumber();
+        var value = json.GetNumber();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be(0);
     }
 
@@ -179,10 +170,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("foo");
     }
 
@@ -197,10 +187,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("");
     }
 
@@ -215,10 +204,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("\tfoo \\ \" / \b \f bar\r\n");
     }
 
@@ -233,10 +221,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("foo \\x");
     }
 
@@ -251,10 +238,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("fooøbar");
     }
 
@@ -269,10 +255,9 @@ public class JsonSpecs
             """
         );
 
-        var value = json.TryGetString();
+        var value = json.GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("foo \\u123");
     }
 
@@ -285,18 +270,13 @@ public class JsonSpecs
             """[1, "foo", true]"""
         );
 
-        var value1 = json.TryGetChild(0)?.TryGetNumber();
-        var value2 = json.TryGetChild(1)?.TryGetString();
-        var value3 = json.TryGetChild(2)?.TryGetBool();
+        var value1 = json.GetChild(0).GetNumber();
+        var value2 = json.GetChild(1).GetString();
+        var value3 = json.GetChild(2).GetBool();
 
         // Assert
-        value1.Should().NotBeNull();
         value1.Should().Be(1);
-
-        value2.Should().NotBeNull();
         value2.Should().Be("foo");
-
-        value3.Should().NotBeNull();
         value3.Should().BeTrue();
     }
 
@@ -309,18 +289,13 @@ public class JsonSpecs
             """{"foo": 1, "bar": "zzz", "baz": true}"""
         );
 
-        var value1 = json.TryGetChild("foo")?.TryGetNumber();
-        var value2 = json.TryGetChild("bar")?.TryGetString();
-        var value3 = json.TryGetChild("baz")?.TryGetBool();
+        var value1 = json.GetChild("foo").GetNumber();
+        var value2 = json.GetChild("bar").GetString();
+        var value3 = json.GetChild("baz").GetBool();
 
         // Assert
-        value1.Should().NotBeNull();
         value1.Should().Be(1);
-
-        value2.Should().NotBeNull();
         value2.Should().Be("zzz");
-
-        value3.Should().NotBeNull();
         value3.Should().BeTrue();
     }
 
@@ -352,47 +327,47 @@ public class JsonSpecs
         );
 
         var version = json
-            .TryGetChild("release")?
-            .TryGetChild("version")?
-            .TryGetString();
+            .GetChild("release")
+            .GetChild("version")
+            .GetString();
 
         var isLatest = json
-            .TryGetChild("release")?
-            .TryGetChild("isLatest")?
-            .TryGetBool();
+            .GetChild("release")
+            .GetChild("isLatest")
+            .GetBool();
 
         var size = json
-            .TryGetChild("release")?
-            .TryGetChild("size")?
-            .TryGetNumber();
+            .GetChild("release")
+            .GetChild("size")
+            .GetNumber();
 
         var file1Url = json
-            .TryGetChild("release")?
-            .TryGetChild("files")?
-            .TryGetChild(0)?
-            .TryGetChild("url")?
-            .TryGetString();
+            .GetChild("release")
+            .GetChild("files")
+            .GetChild(0)
+            .GetChild("url")
+            .GetString();
 
         var file1Name = json
-            .TryGetChild("release")?
-            .TryGetChild("files")?
-            .TryGetChild(0)?
-            .TryGetChild("name")?
-            .TryGetString();
+            .GetChild("release")
+            .GetChild("files")
+            .GetChild(0)
+            .GetChild("name")
+            .GetString();
 
         var file2Url = json
-            .TryGetChild("release")?
-            .TryGetChild("files")?
-            .TryGetChild(1)?
-            .TryGetChild("url")?
-            .TryGetString();
+            .GetChild("release")
+            .GetChild("files")
+            .GetChild(1)
+            .GetChild("url")
+            .GetString();
 
         var file2Name = json
-            .TryGetChild("release")?
-            .TryGetChild("files")?
-            .TryGetChild(1)?
-            .TryGetChild("name")?
-            .TryGetString();
+            .GetChild("release")
+            .GetChild("files")
+            .GetChild(1)
+            .GetChild("name")
+            .GetString();
 
         // Assert
         version.Should().Be("1.2.3");
@@ -413,10 +388,9 @@ public class JsonSpecs
             """   {"foo": "bar"}"""
         );
 
-        var value = json.TryGetChild("foo")?.TryGetString();
+        var value = json.GetChild("foo").GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("bar");
     }
 
@@ -429,10 +403,9 @@ public class JsonSpecs
             """{"foo": "bar"}   """
         );
 
-        var value = json.TryGetChild("foo")?.TryGetString();
+        var value = json.GetChild("foo").GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("bar");
     }
 
@@ -445,10 +418,9 @@ public class JsonSpecs
             """   {"foo": "bar"}   """
         );
 
-        var value = json.TryGetChild("foo")?.TryGetString();
+        var value = json.GetChild("foo").GetString();
 
         // Assert
-        value.Should().NotBeNull();
         value.Should().Be("bar");
     }
 
@@ -491,6 +463,33 @@ public class JsonSpecs
     }
 
     [Fact]
+    public void I_can_try_to_extract_a_value_of_mismatching_type_and_get_an_exception()
+    {
+        // Arrange
+        var json = Json.Parse(
+            // language=JSON
+            "null"
+        );
+
+        // Act & assert
+        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetBool()
+        );
+
+        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetNumber()
+        );
+
+        var ex3 = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetString()
+        );
+
+        _output.WriteLine(ex1.Message);
+        _output.WriteLine(ex2.Message);
+        _output.WriteLine(ex3.Message);
+    }
+
+    [Fact]
     public void I_can_try_to_safely_extract_a_value_of_mismatching_type_and_get_null()
     {
         // Arrange
@@ -508,5 +507,82 @@ public class JsonSpecs
         asBool.Should().BeNull();
         asNumber.Should().BeNull();
         asString.Should().BeNull();
+    }
+
+    [Fact]
+    public void I_can_try_to_extract_a_non_existing_child_of_an_array_and_get_an_exception()
+    {
+        // Arrange
+        var json = Json.Parse(
+            // language=JSON
+            "[1, 2, 3]"
+        );
+
+        // Act & assert
+        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetChild(-1)
+        );
+
+        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetChild(5)
+        );
+
+        _output.WriteLine(ex1.Message);
+        _output.WriteLine(ex2.Message);
+    }
+
+    [Fact]
+    public void I_can_try_to_safely_extract_a_non_existing_child_of_an_array_and_get_null()
+    {
+        // Arrange
+        var json = Json.Parse(
+            // language=JSON
+            "[1, 2, 3]"
+        );
+
+        // Act
+        var child1 = json.TryGetChild(-1);
+        var child2 = json.TryGetChild(5);
+
+        // Assert
+        child1.Should().BeNull();
+        child2.Should().BeNull();
+    }
+
+    [Fact]
+    public void I_can_try_to_extract_a_non_existing_child_of_an_object_and_get_an_exception()
+    {
+        // Arrange
+        var json = Json.Parse(
+            // language=JSON
+            """
+            {"foo": "bar"}
+            """
+        );
+
+        // Act & assert
+        var ex = Assert.ThrowsAny<InvalidOperationException>(() =>
+            json.GetChild("baz")
+        );
+
+        _output.WriteLine(ex.Message);
+    }
+
+    [Fact]
+    public void I_can_try_to_safely_extract_a_non_existing_child_of_an_object_and_get_null()
+    {
+        // Arrange
+        var json = Json.Parse(
+            // language=JSON
+            """
+            {"foo": "bar"}
+            """
+        );
+
+        // Act
+        var child = json.TryGetChild("baz");
+
+        // Assert
+        child.Should().BeNull();
     }
 }
