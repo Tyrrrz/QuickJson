@@ -1,7 +1,9 @@
 ﻿#nullable enable
 namespace QuickJson;
 
-internal static class Json
+// Partial class for extensibility
+// ReSharper disable once PartialTypeWithSinglePart
+internal static partial class Json
 {
     /// <summary>
     /// Attempts to parse the specified string as a JSON document.

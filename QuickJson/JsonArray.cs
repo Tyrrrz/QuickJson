@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿#nullable enable
+using System.Collections.Generic;
 
-#nullable enable
 namespace QuickJson;
 
-internal class JsonArray : JsonNode
+// Partial class for extensibility
+// ReSharper disable once PartialTypeWithSinglePart
+internal partial class JsonArray : JsonNode
 {
     public JsonNode[] Children { get; }
 

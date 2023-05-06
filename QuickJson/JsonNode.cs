@@ -1,11 +1,13 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-#nullable enable
 namespace QuickJson;
 
-internal abstract class JsonNode
+// Partial class for extensibility
+// ReSharper disable once PartialTypeWithSinglePart
+internal abstract partial class JsonNode
 {
     /// <summary>
     /// Attempts to extract a boolean value from this JSON node.

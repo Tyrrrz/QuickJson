@@ -1,7 +1,9 @@
 ﻿#nullable enable
 namespace QuickJson;
 
-internal class JsonNumber : JsonNode
+// Partial class for extensibility
+// ReSharper disable once PartialTypeWithSinglePart
+internal partial class JsonNumber : JsonNode
 {
     public double Value { get; }
 

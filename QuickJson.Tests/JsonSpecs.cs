@@ -267,7 +267,9 @@ public class JsonSpecs
         // Act
         var json = Json.Parse(
             // language=JSON
-            """[1, "foo", true]"""
+            """
+            [1, "foo", true]
+            """
         );
 
         var value1 = json.GetChild(0).GetNumber();
@@ -521,7 +523,9 @@ public class JsonSpecs
         // Arrange
         var json = Json.Parse(
             // language=JSON
-            "[1, 2, 3]"
+            """
+            [1, 2, 3]
+            """
         );
 
         // Act & assert
@@ -543,7 +547,9 @@ public class JsonSpecs
         // Arrange
         var json = Json.Parse(
             // language=JSON
-            "[1, 2, 3]"
+            """
+            [1, 2, 3]
+            """
         );
 
         // Act

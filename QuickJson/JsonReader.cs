@@ -1,13 +1,15 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 
-#nullable enable
 namespace QuickJson;
 
-internal class JsonReader
+// Partial class for extensibility
+// ReSharper disable once PartialTypeWithSinglePart
+internal partial class JsonReader
 {
     private readonly string _source;
     private int _position;
