@@ -433,7 +433,7 @@ public class JsonSpecs
     }
 
     [Fact]
-    public void I_can_try_to_parse_malformed_JSON_and_get_an_exception()
+    public void I_can_try_to_parse_malformed_JSON_and_get_an_error()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() =>
@@ -458,7 +458,7 @@ public class JsonSpecs
     }
 
     [Fact]
-    public void I_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_get_an_exception()
+    public void I_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_get_an_error()
     {
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() =>
@@ -471,7 +471,7 @@ public class JsonSpecs
     }
 
     [Fact]
-    public void I_can_try_to_extract_a_value_of_mismatching_type_and_get_an_exception()
+    public void I_can_try_to_extract_a_value_of_mismatching_type_and_get_an_error()
     {
         // Arrange
         var json = Json.Parse(
@@ -518,7 +518,7 @@ public class JsonSpecs
     }
 
     [Fact]
-    public void I_can_try_to_extract_a_non_existing_child_of_an_array_and_get_an_exception()
+    public void I_can_try_to_extract_a_non_existing_child_of_an_array_and_get_an_error()
     {
         // Arrange
         var json = Json.Parse(
@@ -562,7 +562,7 @@ public class JsonSpecs
     }
 
     [Fact]
-    public void I_can_try_to_extract_a_non_existing_child_of_an_object_and_get_an_exception()
+    public void I_can_try_to_extract_a_non_existing_child_of_an_object_and_get_an_error()
     {
         // Arrange
         var json = Json.Parse(
