@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -81,22 +82,22 @@ internal partial class JsonReader
     {
         var buffer = new StringBuilder();
 
-        // Read sign
+        // Sign
         if (TryRead('-'))
             buffer.Append('-');
 
-        // Read digit characters
+        // Digits
         while (TryRead(char.IsDigit) is { } digit)
             buffer.Append(digit);
 
-        // Read decimal point and following digit characters
+        // Decimal point and the following digits
         if (TryRead('.'))
         {
             buffer.Append('.');
             while (TryRead(char.IsDigit) is { } digit)
                 buffer.Append(digit);
 
-            // Read exponent and following digit characters
+            // Exponent and the following digits
             if (TryRead('e') || TryRead('E'))
             {
                 buffer.Append('e');
@@ -128,7 +129,7 @@ internal partial class JsonReader
 
             if (TryRead(c => c is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is { } escaped)
             {
-                // Unicode character escape, read 4 hex digits as codepoint
+                // Unicode character escape, read the following 4 hex digits as the codepoint
                 if (escaped == 'u')
                 {
                     var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
@@ -168,7 +169,7 @@ internal partial class JsonReader
 
         var buffer = new StringBuilder();
 
-        // Read characters until closing double quote while handling escapes
+        // Read characters until the closing double quote while handling escapes
         while ((TryReadEscape() ?? TryRead(c => c != '"')) is { } ch)
             buffer.Append(ch);
 
@@ -180,27 +181,31 @@ internal partial class JsonReader
 
     private JsonNode? TryReadArray()
     {
+        IEnumerable<JsonNode> ReadArrayChildren()
+        {
+            do
+            {
+                SkipWhiteSpace();
+
+                var child = TryReadNode();
+                if (child is null)
+                    break;
+
+                yield return child;
+
+                SkipWhiteSpace();
+            } while (TryRead(','));
+        }
+
         if (!TryRead('['))
             return null;
 
-        var children = new List<JsonNode>();
-        do
-        {
-            SkipWhiteSpace();
-
-            var child = TryReadNode();
-            if (child is null)
-                break;
-
-            children.Add(child);
-
-            SkipWhiteSpace();
-        } while (TryRead(','));
+        var children = ReadArrayChildren().ToArray();
 
         if (!TryRead(']'))
             return null;
 
-        return new JsonArray(children.ToArray());
+        return new JsonArray(children);
     }
 
     private JsonProperty? TryReadProperty()
@@ -225,27 +230,31 @@ internal partial class JsonReader
 
     private JsonNode? TryReadObject()
     {
+        IEnumerable<JsonProperty> ReadObjectProperties()
+        {
+            do
+            {
+                SkipWhiteSpace();
+
+                var property = TryReadProperty();
+                if (property is null)
+                    break;
+
+                yield return property;
+
+                SkipWhiteSpace();
+            } while (TryRead(','));
+        }
+
         if (!TryRead('{'))
             return null;
 
-        var properties = new List<JsonProperty>();
-        do
-        {
-            SkipWhiteSpace();
-
-            var property = TryReadProperty();
-            if (property is null)
-                break;
-
-            properties.Add(property);
-
-            SkipWhiteSpace();
-        } while (TryRead(','));
+        var properties = ReadObjectProperties().ToArray();
 
         if (!TryRead('}'))
             return null;
 
-        return new JsonObject(properties.ToArray());
+        return new JsonObject(properties);
     }
 
     private JsonNode? TryReadNode() =>
