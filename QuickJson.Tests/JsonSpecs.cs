@@ -16,7 +16,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "null"
         );
 
@@ -29,7 +29,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "true"
         );
 
@@ -44,7 +44,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "false"
         );
 
@@ -59,7 +59,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "1234"
         );
 
@@ -74,7 +74,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "-1234"
         );
 
@@ -89,7 +89,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "1234.56"
         );
 
@@ -104,7 +104,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "-1234.56"
         );
 
@@ -119,7 +119,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "1234.56e-2"
         );
 
@@ -134,7 +134,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "-1234.56e-2"
         );
 
@@ -149,7 +149,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "0"
         );
 
@@ -164,7 +164,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             "foo"
             """
@@ -181,7 +181,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             ""
             """
@@ -198,7 +198,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             "\tfoo \\ \" \/ \b \f bar\r\n"
             """
@@ -215,7 +215,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             "foo \x"
             """
@@ -232,7 +232,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             "foo\u00f8bar"
             """
@@ -249,7 +249,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             "foo \u123"
             """
@@ -266,7 +266,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             [1, "foo", true]
             """
@@ -287,7 +287,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             {
                 "foo": 1,
@@ -312,7 +312,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             {
                 "release": {
@@ -392,7 +392,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """   {"foo": "bar"}"""
         );
 
@@ -407,7 +407,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """{"foo": "bar"}   """
         );
 
@@ -422,7 +422,7 @@ public class JsonSpecs
     {
         // Act
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """   {"foo": "bar"}   """
         );
 
@@ -475,7 +475,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "null"
         );
 
@@ -502,7 +502,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             "null"
         );
 
@@ -522,7 +522,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             [1, 2, 3]
             """
@@ -546,7 +546,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             [1, 2, 3]
             """
@@ -566,7 +566,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             {"foo": "bar"}
             """
@@ -585,7 +585,7 @@ public class JsonSpecs
     {
         // Arrange
         var json = Json.Parse(
-            // language=JSON
+            // lang=json
             """
             {"foo": "bar"}
             """
