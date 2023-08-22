@@ -334,44 +334,31 @@ public class JsonSpecs
             """
         );
 
-        var version = json
-            .GetChild("release")
-            .GetChild("version")
-            .GetString();
+        var version = json.GetChild("release").GetChild("version").GetString();
 
-        var isLatest = json
-            .GetChild("release")
-            .GetChild("isLatest")
-            .GetBool();
+        var isLatest = json.GetChild("release").GetChild("isLatest").GetBool();
 
-        var size = json
-            .GetChild("release")
-            .GetChild("size")
-            .GetNumber();
+        var size = json.GetChild("release").GetChild("size").GetNumber();
 
-        var file1Url = json
-            .GetChild("release")
+        var file1Url = json.GetChild("release")
             .GetChild("files")
             .GetChild(0)
             .GetChild("url")
             .GetString();
 
-        var file1Name = json
-            .GetChild("release")
+        var file1Name = json.GetChild("release")
             .GetChild("files")
             .GetChild(0)
             .GetChild("name")
             .GetString();
 
-        var file2Url = json
-            .GetChild("release")
+        var file2Url = json.GetChild("release")
             .GetChild("files")
             .GetChild(1)
             .GetChild("url")
             .GetString();
 
-        var file2Name = json
-            .GetChild("release")
+        var file2Name = json.GetChild("release")
             .GetChild("files")
             .GetChild(1)
             .GetChild("name")
@@ -436,11 +423,7 @@ public class JsonSpecs
     public void I_can_try_to_parse_malformed_JSON_and_get_an_error()
     {
         // Act & assert
-        var ex = Assert.Throws<InvalidOperationException>(() =>
-            Json.Parse(
-                "[abc}"
-            )
-        );
+        var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("[abc}"));
 
         _output.WriteLine(ex.Message);
     }
@@ -449,9 +432,7 @@ public class JsonSpecs
     public void I_can_try_to_safely_parse_malformed_JSON_and_get_null()
     {
         // Act
-        var json = Json.TryParse(
-            "[abc}"
-        );
+        var json = Json.TryParse("[abc}");
 
         // Assert
         json.Should().BeNull();
@@ -461,11 +442,7 @@ public class JsonSpecs
     public void I_can_try_to_parse_JSON_with_unexpected_trailing_characters_and_get_an_error()
     {
         // Act & assert
-        var ex = Assert.Throws<InvalidOperationException>(() =>
-            Json.Parse(
-                "true_"
-            )
-        );
+        var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("true_"));
 
         _output.WriteLine(ex.Message);
     }
@@ -480,17 +457,11 @@ public class JsonSpecs
         );
 
         // Act & assert
-        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetBool()
-        );
+        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetBool());
 
-        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetNumber()
-        );
+        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetNumber());
 
-        var ex3 = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetString()
-        );
+        var ex3 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetString());
 
         _output.WriteLine(ex1.Message);
         _output.WriteLine(ex2.Message);
@@ -529,13 +500,9 @@ public class JsonSpecs
         );
 
         // Act & assert
-        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetChild(-1)
-        );
+        var ex1 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetChild(-1));
 
-        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetChild(5)
-        );
+        var ex2 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetChild(5));
 
         _output.WriteLine(ex1.Message);
         _output.WriteLine(ex2.Message);
@@ -573,9 +540,7 @@ public class JsonSpecs
         );
 
         // Act & assert
-        var ex = Assert.ThrowsAny<InvalidOperationException>(() =>
-            json.GetChild("baz")
-        );
+        var ex = Assert.ThrowsAny<InvalidOperationException>(() => json.GetChild("baz"));
 
         _output.WriteLine(ex.Message);
     }

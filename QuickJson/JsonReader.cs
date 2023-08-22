@@ -45,10 +45,12 @@ internal partial class JsonReader
         return str;
     }
 
-    private bool TryRead(string expectedString) => TryRead(
-        expectedString.Length,
-        s => string.Equals(s, expectedString, StringComparison.Ordinal)
-    ) is not null;
+    private bool TryRead(string expectedString) =>
+        TryRead(
+            expectedString.Length,
+            s => string.Equals(s, expectedString, StringComparison.Ordinal)
+        )
+            is not null;
 
     private void SkipWhiteSpace()
     {
@@ -58,22 +60,13 @@ internal partial class JsonReader
         }
     }
 
-    private JsonNode? TryReadNull() =>
-        TryRead("null")
-            ? JsonNull.Instance
-            : null;
+    private JsonNode? TryReadNull() => TryRead("null") ? JsonNull.Instance : null;
 
     private JsonNode? TryReadBool()
     {
-        JsonNode? TryReadBoolTrue() =>
-            TryRead("true")
-                ? JsonBool.True
-                : null;
+        JsonNode? TryReadBoolTrue() => TryRead("true") ? JsonBool.True : null;
 
-        JsonNode? TryReadBoolFalse() =>
-            TryRead("false")
-                ? JsonBool.False
-                : null;
+        JsonNode? TryReadBoolFalse() => TryRead("false") ? JsonBool.False : null;
 
         return TryReadBoolTrue() ?? TryReadBoolFalse();
     }
@@ -111,9 +104,12 @@ internal partial class JsonReader
 
         return double.TryParse(
             buffer.ToString(),
-            NumberStyles.AllowLeadingSign | NumberStyles.AllowDecimalPoint | NumberStyles.AllowExponent,
+            NumberStyles.AllowLeadingSign
+                | NumberStyles.AllowDecimalPoint
+                | NumberStyles.AllowExponent,
             CultureInfo.InvariantCulture,
-            out var value)
+            out var value
+        )
             ? new JsonNumber(value)
             : null;
     }
@@ -127,19 +123,26 @@ internal partial class JsonReader
             if (!TryRead('\\'))
                 return null;
 
-            if (TryRead(c => c is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is { } escaped)
+            if (
+                TryRead(c => c is '\\' or '"' or '/' or 'b' or 'f' or 'n' or 'r' or 't' or 'u') is
+                { } escaped
+            )
             {
                 // Unicode character escape, read the following 4 hex digits as the codepoint
                 if (escaped == 'u')
                 {
                     var hexSequence = TryRead(4, s => Regex.IsMatch(s, @"^[0-9a-fA-F]{4}$"));
-                    if (hexSequence is not null && short.TryParse(
+                    if (
+                        hexSequence is not null
+                        && short.TryParse(
                             hexSequence,
                             NumberStyles.AllowHexSpecifier,
                             CultureInfo.InvariantCulture,
-                            out var codepoint))
+                            out var codepoint
+                        )
+                    )
                     {
-                        return (char) codepoint;
+                        return (char)codepoint;
                     }
 
                     // Backtrack to the beginning to consume the characters raw
@@ -258,12 +261,12 @@ internal partial class JsonReader
     }
 
     private JsonNode? TryReadNode() =>
-        TryReadNull() ??
-        TryReadBool() ??
-        TryReadNumber() ??
-        TryReadString() ??
-        TryReadArray() ??
-        TryReadObject();
+        TryReadNull()
+        ?? TryReadBool()
+        ?? TryReadNumber()
+        ?? TryReadString()
+        ?? TryReadArray()
+        ?? TryReadObject();
 
     public JsonNode? TryReadDocument()
     {
@@ -294,8 +297,8 @@ internal partial class JsonReader
         );
 
         throw new InvalidOperationException(
-            "Failed to parse JSON. " +
-            $"Unexpected character sequence at position {_position}: '{remainingSource}'."
+            "Failed to parse JSON. "
+                + $"Unexpected character sequence at position {_position}: '{remainingSource}'."
         );
     }
 }
