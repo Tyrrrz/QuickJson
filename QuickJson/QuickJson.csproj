@@ -4,8 +4,6 @@
     <!-- Target frameworks here are only used to verify source compatibility with different API levels -->
     <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net50</TargetFrameworks>
     <IsPackable>true</IsPackable>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,7 +13,8 @@
     <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
     <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/blob/master/Changelog.md</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
 
