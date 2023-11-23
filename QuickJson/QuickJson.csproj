@@ -11,7 +11,7 @@
     <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose run-time dependencies.</Description>
     <PackageTags>quick json parse parser source-only</PackageTags>
     <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/blob/master/Changelog.md</PackageReleaseNotes>
+    <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/releases/tag/$(Version)</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeBuildOutput>false</IncludeBuildOutput>
