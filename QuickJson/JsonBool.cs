@@ -3,11 +3,9 @@ namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
-internal partial class JsonBool : JsonNode
+internal partial class JsonBool(bool value) : JsonNode
 {
-    public bool Value { get; }
-
-    public JsonBool(bool value) => Value = value;
+    public bool Value { get; } = value;
 
     public override bool? TryGetBool() => Value;
 }

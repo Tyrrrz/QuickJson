@@ -5,11 +5,9 @@ namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
-internal partial class JsonArray : JsonNode
+internal partial class JsonArray(JsonNode[] children) : JsonNode
 {
-    public JsonNode[] Children { get; }
-
-    public JsonArray(JsonNode[] children) => Children = children;
+    public JsonNode[] Children { get; } = children;
 
     public override IEnumerable<JsonNode> EnumerateChildren() => Children;
 }

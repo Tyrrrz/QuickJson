@@ -10,19 +10,16 @@ namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
-internal partial class JsonReader
+internal partial class JsonReader(string source)
 {
-    private readonly string _source;
     private int _position;
-
-    public JsonReader(string source) => _source = source;
 
     private char? TryRead(Func<char, bool> predicate)
     {
-        if (_position >= _source.Length)
+        if (_position >= source.Length)
             return null;
 
-        var ch = _source[_position];
+        var ch = source[_position];
         if (!predicate(ch))
             return null;
 
@@ -34,10 +31,10 @@ internal partial class JsonReader
 
     private string? TryRead(int length, Func<string, bool> predicate)
     {
-        if (_position + length > _source.Length)
+        if (_position + length > source.Length)
             return null;
 
-        var str = _source.Substring(_position, length);
+        var str = source.Substring(_position, length);
         if (!predicate(str))
             return null;
 
@@ -279,7 +276,7 @@ internal partial class JsonReader
         SkipWhiteSpace();
 
         // Ensure that the entire input has been consumed
-        if (_position < _source.Length)
+        if (_position < source.Length)
             return null;
 
         return node;
@@ -290,10 +287,10 @@ internal partial class JsonReader
         if (TryReadDocument() is { } result)
             return result;
 
-        var remainingSource = _source.Substring(
+        var remainingSource = source.Substring(
             _position,
             // Limit the reported remainder to a reasonable length
-            Math.Min(_source.Length - _position, 100)
+            Math.Min(source.Length - _position, 100)
         );
 
         throw new InvalidOperationException(

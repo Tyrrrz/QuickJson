@@ -5,12 +5,8 @@ using Xunit.Abstractions;
 
 namespace QuickJson.Tests;
 
-public class JsonSpecs
+public class JsonSpecs(ITestOutputHelper testOutput)
 {
-    private readonly ITestOutputHelper _output;
-
-    public JsonSpecs(ITestOutputHelper output) => _output = output;
-
     [Fact]
     public void I_can_parse_JSON_containing_a_null_value()
     {
@@ -425,7 +421,7 @@ public class JsonSpecs
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("[abc}"));
 
-        _output.WriteLine(ex.Message);
+        testOutput.WriteLine(ex.Message);
     }
 
     [Fact]
@@ -444,7 +440,7 @@ public class JsonSpecs
         // Act & assert
         var ex = Assert.Throws<InvalidOperationException>(() => Json.Parse("true_"));
 
-        _output.WriteLine(ex.Message);
+        testOutput.WriteLine(ex.Message);
     }
 
     [Fact]
@@ -463,9 +459,9 @@ public class JsonSpecs
 
         var ex3 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetString());
 
-        _output.WriteLine(ex1.Message);
-        _output.WriteLine(ex2.Message);
-        _output.WriteLine(ex3.Message);
+        testOutput.WriteLine(ex1.Message);
+        testOutput.WriteLine(ex2.Message);
+        testOutput.WriteLine(ex3.Message);
     }
 
     [Fact]
@@ -504,8 +500,8 @@ public class JsonSpecs
 
         var ex2 = Assert.ThrowsAny<InvalidOperationException>(() => json.GetChild(5));
 
-        _output.WriteLine(ex1.Message);
-        _output.WriteLine(ex2.Message);
+        testOutput.WriteLine(ex1.Message);
+        testOutput.WriteLine(ex2.Message);
     }
 
     [Fact]
@@ -542,7 +538,7 @@ public class JsonSpecs
         // Act & assert
         var ex = Assert.ThrowsAny<InvalidOperationException>(() => json.GetChild("baz"));
 
-        _output.WriteLine(ex.Message);
+        testOutput.WriteLine(ex.Message);
     }
 
     [Fact]

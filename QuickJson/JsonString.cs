@@ -3,11 +3,9 @@ namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
-internal partial class JsonString : JsonNode
+internal partial class JsonString(string value) : JsonNode
 {
-    public string Value { get; }
-
-    public JsonString(string value) => Value = value;
+    public string Value { get; } = value;
 
     public override string TryGetString() => Value;
 }
