@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <!-- Target frameworks here are only used to verify source compatibility with different API levels -->
-    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net80</TargetFrameworks>
+    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
