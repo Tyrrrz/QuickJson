@@ -6,6 +6,7 @@
     <IsPackable>true</IsPackable>
     <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
     <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <PropertyGroup>
