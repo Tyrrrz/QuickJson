@@ -155,7 +155,7 @@ internal partial class JsonReader(string source)
                     'n' => '\n',
                     'r' => '\r',
                     't' => '\t',
-                    _ => escaped
+                    _ => escaped,
                 };
             }
 
