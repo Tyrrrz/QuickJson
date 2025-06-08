@@ -1,14 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <!-- Target frameworks here are only used to verify source compatibility with different API levels -->
     <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net8.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
-    <IsTrimmable Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))">true</IsTrimmable>
-    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))">true</IsAotCompatible>
+    <IsTrimmable
+      Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))"
+      >true</IsTrimmable
+    >
+    <IsAotCompatible
+      Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net7.0'))"
+      >true</IsAotCompatible
+    >
     <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
-
   <PropertyGroup>
     <Authors>$(Company)</Authors>
     <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose run-time dependencies.</Description>
@@ -20,21 +24,29 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
-
   <ItemGroup>
     <!-- All types are internal, so we need to make them visible for testing -->
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
       <_Parameter1>$(AssemblyName).Tests</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
-
   <ItemGroup>
-    <Content Include="**/*.cs" Pack="true" PackagePath="contentFiles/cs/any/QuickJson" Visible="false" BuildAction="compile" />
-    <Content Include="**/*.cs" Pack="true" PackagePath="content/QuickJson" Visible="false" BuildAction="compile" />
+    <Content
+      Include="**/*.cs"
+      Pack="true"
+      PackagePath="contentFiles/cs/any/QuickJson"
+      Visible="false"
+      BuildAction="compile"
+    />
+    <Content
+      Include="**/*.cs"
+      Pack="true"
+      PackagePath="content/QuickJson"
+      Visible="false"
+      BuildAction="compile"
+    />
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="CSharpier.MsBuild" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
-
 </Project>
