@@ -32,7 +32,7 @@ To learn more about the war and how you can help, [click here](https://tyrrrz.me
 
 - 📦 [NuGet](https://nuget.org/packages/QuickJson): `dotnet add package QuickJson`
 
-> **Warning**:
+> [!WARNING]
 > To use this package, your project needs to target C# 10 or later.
 > You can ensure this by setting `<LangVersion>latest</LangVersion>` in the project file.
 
