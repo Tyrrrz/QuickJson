@@ -1,9 +1,9 @@
 # QuickJson
 
-[![Status](https://img.shields.io/badge/status-maintenance-ffd700.svg)](https://github.com/Tyrrrz/.github/blob/master/docs/project-status.md)
+[![Status](https://img.shields.io/badge/status-maintenance-ffd700.svg)](https://github.com/Tyrrrz/.github/blob/prime/docs/project-status.md)
 [![Made in Ukraine](https://img.shields.io/badge/made_in-ukraine-ffd700.svg?labelColor=0057b7)](https://tyrrrz.me/ukraine)
-[![Build](https://img.shields.io/github/actions/workflow/status/Tyrrrz/QuickJson/main.yml?branch=master)](https://github.com/Tyrrrz/QuickJson/actions)
-[![Coverage](https://img.shields.io/codecov/c/github/Tyrrrz/QuickJson/master)](https://codecov.io/gh/Tyrrrz/QuickJson)
+[![Build](https://img.shields.io/github/actions/workflow/status/Tyrrrz/QuickJson/main.yml?branch=prime)](https://github.com/Tyrrrz/QuickJson/actions)
+[![Coverage](https://img.shields.io/codecov/c/github/Tyrrrz/QuickJson/prime)](https://codecov.io/gh/Tyrrrz/QuickJson)
 [![Version](https://img.shields.io/nuget/v/QuickJson.svg)](https://nuget.org/packages/QuickJson)
 [![Downloads](https://img.shields.io/nuget/dt/QuickJson.svg)](https://nuget.org/packages/QuickJson)
 [![Discord](https://img.shields.io/discord/869237470565392384?label=discord)](https://discord.gg/2SUWKFnHSm)
@@ -17,7 +17,7 @@
 
 **QuickJson** is a very basic JSON parser, distributed as a source-only package that can be referenced without imposing any run-time dependencies.
 
-## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/master/docs/why-so-political.md)</sup>
+## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/prime/docs/why-so-political.md)</sup>
 
 By using this project or its source code, for any purpose and in any shape or form, you grant your **implicit agreement** to all the following statements:
 
