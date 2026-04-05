@@ -15,6 +15,10 @@
     </tr>
 </table>
 
+<p align="center">
+    <img src="favicon.png" alt="Icon" />
+</p>
+
 **QuickJson** is a very basic JSON parser, distributed as a source-only package that can be referenced without imposing any run-time dependencies.
 
 ## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/prime/docs/why-so-political.md)</sup>
