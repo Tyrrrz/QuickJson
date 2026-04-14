@@ -37,8 +37,11 @@ To learn more about the war and how you can help, [click here](https://tyrrrz.me
 - 📦 [NuGet](https://nuget.org/packages/QuickJson): `dotnet add package QuickJson`
 
 > [!WARNING]
-> To use this package, your project needs to target C# 10 or later.
-> You can ensure this by setting `<LangVersion>latest</LangVersion>` in the project file.
+> To use this package, your project needs to target C# 14 or later.
+> You can ensure this by using the latest .NET SDK and setting `<LangVersion>latest</LangVersion>` in the project file.
+
+> [!IMPORTANT]
+> The library is statically tested for compatibility with .NET Standard 1.0+ and .NET Framework 3.5+, however some of the older targets may require additionally installing [**PolyShim**](https://github.com/Tyrrrz/PolyShim).
 
 ## Usage
 
