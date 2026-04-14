@@ -64,14 +64,13 @@ internal abstract partial class JsonNode
     /// Enumerates all children of this JSON node.
     /// Returns an empty sequence if the node is not an array.
     /// </summary>
-    public virtual IEnumerable<JsonNode> EnumerateChildren() => Enumerable.Empty<JsonNode>();
+    public virtual IEnumerable<JsonNode> EnumerateChildren() => [];
 
     /// <summary>
     /// Enumerates all properties of this JSON node.
     /// Returns an empty sequence if the node is not an object.
     /// </summary>
-    public virtual IEnumerable<JsonProperty> EnumerateProperties() =>
-        Enumerable.Empty<JsonProperty>();
+    public virtual IEnumerable<JsonProperty> EnumerateProperties() => [];
 
     /// <summary>
     /// Attempts to extract a child node at the specified index from this JSON node.
