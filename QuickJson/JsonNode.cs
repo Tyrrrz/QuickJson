@@ -1,16 +1,16 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Linq;
-#if !QUICKJSON_INCLUDE_COVERAGE && (NETSTANDARD2_0_OR_GREATER || NET40_OR_GREATER || NET5_0_OR_GREATER)
+#if !QUICKJSON_INCLUDE_COVERAGE
 using System.Diagnostics.CodeAnalysis;
 #endif
+using System.Linq;
 
 namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE && (NETSTANDARD2_0_OR_GREATER || NET40_OR_GREATER || NET5_0_OR_GREATER)
+#if !QUICKJSON_INCLUDE_COVERAGE
 [ExcludeFromCodeCoverage]
 #endif
 internal abstract partial class JsonNode
