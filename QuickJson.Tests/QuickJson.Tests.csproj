@@ -3,6 +3,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
+
+  <PropertyGroup>
+    <!-- Enable coverage collection for referenced source files -->
+    <DefineConstants>$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
