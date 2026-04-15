@@ -7,6 +7,7 @@
   <PropertyGroup>
     <!-- Enable coverage collection for referenced source files -->
     <DefineConstants>$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</DefineConstants>
+    <RunSettingsFilePath>$(MSBuildThisFileDirectory)QuickJson.Tests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +16,6 @@
 
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="QuickJson.Tests.runsettings" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
