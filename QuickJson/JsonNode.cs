@@ -1,10 +1,8 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Linq;
-#if !QUICKJSON_INCLUDE_COVERAGE
 using System.Diagnostics.CodeAnalysis;
-#endif
+using System.Linq;
 
 namespace QuickJson;
 

@@ -1,7 +1,5 @@
 ﻿#nullable enable
-#if !QUICKJSON_INCLUDE_COVERAGE
 using System.Diagnostics.CodeAnalysis;
-#endif
 
 namespace QuickJson;
 
