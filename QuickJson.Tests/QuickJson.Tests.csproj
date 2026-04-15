@@ -7,6 +7,7 @@
   <PropertyGroup>
     <!-- Enable coverage collection for referenced source files -->
     <DefineConstants>$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</DefineConstants>
+    <RunSettingsFilePath>QuickJson.Tests.runsettings</RunSettingsFilePath>
   </PropertyGroup>
 
   <ItemGroup>
