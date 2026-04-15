@@ -1,8 +1,13 @@
 ﻿#nullable enable
+using System.Diagnostics.CodeAnalysis;
+
 namespace QuickJson;
 
 // Partial class for extensibility
 // ReSharper disable once PartialTypeWithSinglePart
+#if !QUICKJSON_INCLUDE_COVERAGE
+[ExcludeFromCodeCoverage]
+#endif
 internal static partial class Json
 {
     /// <summary>
