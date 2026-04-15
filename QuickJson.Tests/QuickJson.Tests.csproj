@@ -5,12 +5,18 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <!-- Enable coverage collection in QuickJson source files compiled into this project -->
+    <!-- Enable coverage collection for referenced source files -->
     <DefineConstants>$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</DefineConstants>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="../QuickJson/**/*.cs" Exclude="**/obj/**/*" Visible="false" />
+  </ItemGroup>
+
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="coverlet.collector" PrivateAssets="all" />
     <PackageReference Include="CSharpier.MsBuild" PrivateAssets="all" />
@@ -19,9 +25,5 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
     <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
-  </ItemGroup>
-  <ItemGroup>
-    <!-- Reference QuickJson source files directly, the same way a real NuGet consumer would -->
-    <Compile Include="../QuickJson/**/*.cs" />
   </ItemGroup>
 </Project>
