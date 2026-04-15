@@ -14,21 +14,11 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Authors>$(Company)</Authors>
-    <Description>Simple lightweight JSON parser. This is a source-only package that does not contain any binaries and does not impose run-time dependencies.</Description>
     <PackageIcon>favicon.png</PackageIcon>
-    <PackageTags>quick json parse parser source-only</PackageTags>
-    <PackageProjectUrl>https://github.com/Tyrrrz/QuickJson</PackageProjectUrl>
-    <PackageReleaseNotes>https://github.com/Tyrrrz/QuickJson/releases</PackageReleaseNotes>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <DevelopmentDependency>true</DevelopmentDependency>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="../favicon.png" Pack="true" PackagePath="" Visible="false" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content
@@ -45,6 +35,10 @@
       Visible="false"
       BuildAction="compile"
     />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../favicon.png" Pack="true" PackagePath="" Visible="false" />
   </ItemGroup>
 
   <ItemGroup>
