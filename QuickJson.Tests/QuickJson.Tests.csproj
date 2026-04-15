@@ -4,6 +4,10 @@
     <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <!-- Enable coverage collection in QuickJson source files compiled into this project -->
+    <DefineConstants>$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="xunit.runner.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
@@ -17,9 +21,7 @@
     <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QuickJson\QuickJson.csproj">
-      <!-- Enable coverage collection for the referenced source files -->
-      <AdditionalProperties>DefineConstants=$(DefineConstants);QUICKJSON_INCLUDE_COVERAGE</AdditionalProperties>
-    </ProjectReference>
+    <!-- Reference QuickJson source files directly, the same way a real NuGet consumer would -->
+    <Compile Include="../QuickJson/**/*.cs" />
   </ItemGroup>
 </Project>
