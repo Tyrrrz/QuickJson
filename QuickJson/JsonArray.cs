@@ -1,17 +1,17 @@
-#nullable enable
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal partial class JsonArray(JsonNode[] children) : JsonNode
+/// <summary>
+/// Represents a JSON array value.
+/// </summary>
+public class JsonArray(JsonNode[] children) : JsonNode
 {
+    /// <summary>
+    /// Array's children nodes.
+    /// </summary>
     public JsonNode[] Children { get; } = children;
 
+    /// <inheritdoc />
     public override IEnumerable<JsonNode> EnumerateChildren() => Children;
 }

@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- Target frameworks here are only used to verify source compatibility with different API levels -->
-    <TargetFrameworks>netstandard1.0;netstandard2.0;net35;net45;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net35;net6.0;net7.0;net10.0</TargetFrameworks>
     <IsPackable>true</IsPackable>
     <IsTrimmable
       Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net6.0'))"
@@ -15,27 +14,8 @@
 
   <PropertyGroup>
     <PackageIcon>favicon.png</PackageIcon>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
-    <DevelopmentDependency>true</DevelopmentDependency>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content
-      Include="**/*.cs"
-      Pack="true"
-      PackagePath="contentFiles/cs/any/QuickJson"
-      Visible="false"
-      BuildAction="compile"
-    />
-    <Content
-      Include="**/*.cs"
-      Pack="true"
-      PackagePath="content/QuickJson"
-      Visible="false"
-      BuildAction="compile"
-    />
-  </ItemGroup>
 
   <ItemGroup>
     <None Include="../favicon.png" Pack="true" PackagePath="" Visible="false" />

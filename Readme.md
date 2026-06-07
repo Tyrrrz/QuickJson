@@ -19,7 +19,7 @@
     <img src="favicon.png" alt="Icon" />
 </p>
 
-**QuickJson** is a very basic JSON parser, distributed as a source-only package that can be referenced without imposing any run-time dependencies.
+**QuickJson** is a very basic, lightweight JSON parser.
 
 ## Terms of use<sup>[[?]](https://github.com/Tyrrrz/.github/blob/prime/docs/why-so-political.md)</sup>
 
@@ -36,9 +36,8 @@ To learn more about the war and how you can help, [click here](https://tyrrrz.me
 
 - 📦 [NuGet](https://nuget.org/packages/QuickJson): `dotnet add package QuickJson`
 
-> [!IMPORTANT]
-> This package is compatible with .NET Standard 1.0+ and .NET Framework 3.5+, however most older targets will require additionally installing [**PolyShim**](https://github.com/Tyrrrz/PolyShim) to bridge missing APIs and compiler features.
-> Latest versions of .NET are supported out of the box, without any additional dependencies.
+> [!TIP]
+> You can use [**Binternal**](https://github.com/Tyrrrz/Binternal) to internalize this library if you prefer to avoid taking an external dependency.
 
 ## Usage
 

@@ -1,14 +1,9 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal static partial class Json
+/// <summary>
+/// Provides static methods for parsing JSON documents from strings.
+/// </summary>
+public static class Json
 {
     /// <summary>
     /// Attempts to parse the specified string as a JSON document.

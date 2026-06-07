@@ -1,16 +1,17 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal partial class JsonProperty(string name, JsonNode value)
+/// <summary>
+/// Represents a JSON property, which is a key-value pair within a JSON object.
+/// </summary>
+public class JsonProperty(string name, JsonNode value)
 {
+    /// <summary>
+    /// Property's name (key).
+    /// </summary>
     public string Name { get; } = name;
 
+    /// <summary>
+    /// Property's value.
+    /// </summary>
     public JsonNode Value { get; } = value;
 }

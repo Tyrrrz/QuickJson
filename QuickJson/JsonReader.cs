@@ -1,7 +1,5 @@
-#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -9,12 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal partial class JsonReader(string source)
+internal class JsonReader(string source)
 {
     private int _position;
 

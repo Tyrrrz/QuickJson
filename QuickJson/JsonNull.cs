@@ -1,14 +1,12 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal partial class JsonNull : JsonNode
+/// <summary>
+/// Represents a JSON null value.
+/// </summary>
+public class JsonNull : JsonNode
 {
+    /// <summary>
+    /// Singleton instance representing the JSON null value.
+    /// </summary>
     public static JsonNull Instance { get; } = new();
 }

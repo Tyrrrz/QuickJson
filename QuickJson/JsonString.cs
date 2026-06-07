@@ -1,16 +1,15 @@
-#nullable enable
-using System.Diagnostics.CodeAnalysis;
-
 namespace QuickJson;
 
-// Partial class for extensibility
-// ReSharper disable once PartialTypeWithSinglePart
-#if !QUICKJSON_INCLUDE_COVERAGE
-[ExcludeFromCodeCoverage]
-#endif
-internal partial class JsonString(string value) : JsonNode
+/// <summary>
+/// Represents a JSON string value.
+/// </summary>
+public class JsonString(string value) : JsonNode
 {
+    /// <summary>
+    /// Node's value as a string.
+    /// </summary>
     public string Value { get; } = value;
 
+    /// <inheritdoc />
     public override string TryGetString() => Value;
 }
