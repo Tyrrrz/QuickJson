@@ -558,4 +558,79 @@ public class JsonSpecs(ITestOutputHelper testOutput)
         // Assert
         child.Should().BeNull();
     }
+
+    [Fact]
+    public void I_can_escape_a_plain_string_that_contains_no_special_characters()
+    {
+        // Act
+        var result = Json.Escape("hello world");
+
+        // Assert
+        result.Should().Be("hello world");
+    }
+
+    [Fact]
+    public void I_can_escape_a_string_that_contains_a_double_quote()
+    {
+        // Act
+        var result = Json.Escape("say \"hello\"");
+
+        // Assert
+        result.Should().Be("say \\\"hello\\\"");
+    }
+
+    [Fact]
+    public void I_can_escape_a_string_that_contains_a_backslash()
+    {
+        // Act
+        var result = Json.Escape("foo\\bar");
+
+        // Assert
+        result.Should().Be("foo\\\\bar");
+    }
+
+    [Fact]
+    public void I_can_escape_a_string_that_contains_special_whitespace_characters()
+    {
+        // Act
+        var result = Json.Escape("\b\f\n\r\t");
+
+        // Assert
+        result.Should().Be("\\b\\f\\n\\r\\t");
+    }
+
+    [Fact]
+    public void I_can_escape_a_string_that_contains_control_characters()
+    {
+        // Act
+        var result = Json.Escape("\u0000\u001f");
+
+        // Assert
+        result.Should().Be("\\u0000\\u001f");
+    }
+
+    [Fact]
+    public void I_can_escape_an_empty_string()
+    {
+        // Act
+        var result = Json.Escape("");
+
+        // Assert
+        result.Should().Be("");
+    }
+
+    [Fact]
+    public void I_can_escape_a_string_and_use_it_to_produce_valid_JSON()
+    {
+        // Arrange
+        var raw = "line1\nline2\t\"quoted\"\\path";
+
+        // Act
+        var escaped = Json.Escape(raw);
+        var json = Json.Parse($"\"{escaped}\"");
+        var value = json.GetString();
+
+        // Assert
+        value.Should().Be(raw);
+    }
 }
